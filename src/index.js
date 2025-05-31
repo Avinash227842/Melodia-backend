@@ -33,12 +33,10 @@ const httpServer = createServer(app);
 initializeSocket(httpServer)
 
 //cors is a middleware used to allow cross origin requests from the frontend
-app.use(cors(
-    {
-        origin: "http://localhost:3000",
-        credentials: true
-    }
-))
+app.use(cors({
+    origin: [process.env.CLIENT_URL, "http://localhost:3000"],
+    credentials: true
+}));
 
 //it is a middleware used to parse request body
 app.use(express.json());
